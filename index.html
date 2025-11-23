@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Human Typing Bot</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>🤖 Human Typing Bot</h1>
+      <p class="subtitle">Simulate natural human typing with precision control</p>
+    </header>
+
+    <main>
+      <section class="input-section">
+        <label for="textInput">Text to Type</label>
+        <textarea id="textInput" placeholder="Paste or type the text you want to simulate typing..."
+          rows="8"></textarea>
+      </section>
+
+      <section class="controls-section">
+        <div class="speed-controls">
+          <div class="speed-control">
+            <label for="charSpeed">
+              Character Speed: <span id="charSpeedValue">100</span> CPM
+            </label>
+            <input type="range" id="charSpeed" min="30" max="300" value="100" step="10">
+            <div class="speed-hints">
+              <span>Slow (30)</span>
+              <span>Fast (300)</span>
+            </div>
+          </div>
+
+          <div class="speed-control">
+            <label for="wordSpeed">
+              Word Speed: <span id="wordSpeedValue">40</span> WPM
+            </label>
+            <input type="range" id="wordSpeed" min="10" max="120" value="40" step="5">
+            <div class="speed-hints">
+              <span>Slow (10)</span>
+              <span>Fast (120)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button id="startBtn" class="btn btn-primary">
+            <span class="btn-icon">▶</span>
+            Start Typing
+          </button>
+          <button id="pauseBtn" class="btn btn-secondary" disabled>
+            <span class="btn-icon">⏸</span>
+            Pause
+          </button>
+          <button id="resumeBtn" class="btn btn-secondary" disabled>
+            <span class="btn-icon">▶</span>
+            Resume
+          </button>
+          <button id="stopBtn" class="btn btn-danger" disabled>
+            <span class="btn-icon">⏹</span>
+            Stop
+          </button>
+        </div>
+      </section>
+
+      <section class="status-section">
+        <div id="statusDisplay" class="status-display">
+          <div class="status-icon">ℹ️</div>
+          <div class="status-text">Ready to type</div>
+        </div>
+
+        <div id="progressBar" class="progress-bar" style="display: none;">
+          <div class="progress-fill" id="progressFill"></div>
+          <div class="progress-text" id="progressText">0%</div>
+        </div>
+
+        <div id="countdown" class="countdown" style="display: none;">
+          <div class="countdown-number" id="countdownNumber">3</div>
+          <div class="countdown-text">Select your target window...</div>
+        </div>
+
+        <div class="troubleshoot-link">
+          <a href="#" id="troubleshootBtn">⚠️ Text not appearing? Click here</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Troubleshooting Modal -->
+    <div id="troubleshootModal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>🔧 Troubleshooting</h2>
+        <div class="troubleshoot-steps">
+          <p><strong>Issue:</strong> The app says "Typing..." but no text appears.</p>
+          <p><strong>Cause:</strong> macOS blocked the keystrokes (Accessibility Permissions).</p>
+          <p><strong>Fix:</strong></p>
+          <ol>
+            <li>Open <strong>System Settings</strong> > <strong>Privacy & Security</strong> >
+              <strong>Accessibility</strong>.</li>
+            <li>Find <strong>"Human Typing Bot"</strong> (or "Electron" / "Terminal" if running from code).</li>
+            <li><strong>REMOVE</strong> them completely using the <span class="minus-icon">➖</span> button.</li>
+            <li>Restart the app.</li>
+            <li>Click "Allow" when prompted.</li>
+          </ol>
+          <div class="command-box">
+            <p>Or run this command in Terminal to force reset:</p>
+            <code>tccutil reset Accessibility com.typingbot.app</code>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p class="info-text">
+        💡 <strong>How to use:</strong> Paste your text, adjust speeds, click Start,
+        then quickly click on the target window/field where you want the text typed.
+      </p>
+    </footer>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+
+</html>

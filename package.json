@@ -1,0 +1,47 @@
+{
+  "name": "typing-bot",
+  "version": "1.1.0",
+  "description": "Human-like typing automation software",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "jest",
+    "rebuild": "electron-rebuild",
+    "build": "electron-builder",
+    "build:win": "electron-builder --win --x64",
+    "build:mac": "electron-builder --mac --arm64"
+  },
+  "keywords": [
+    "typing",
+    "automation",
+    "electron"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "robotjs": "^0.6.0"
+  },
+  "devDependencies": {
+    "@electron/rebuild": "^4.0.1",
+    "electron": "^39.2.3",
+    "electron-builder": "^24.13.3",
+    "jest": "^29.7.0"
+  },
+  "build": {
+    "appId": "com.typingbot.app",
+    "productName": "Human Typing Bot",
+    "mac": {
+      "target": "dmg",
+      "category": "public.app-category.utilities"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.ico"
+    },
+    "files": [
+      "**/*",
+      "!**/*.test.js",
+      "!**/__tests__/**"
+    ]
+  }
+}
